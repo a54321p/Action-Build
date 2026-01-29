@@ -1,6 +1,6 @@
 **`简体中文`** | [English](README-en.md)
  
-[![Build](https://img.shields.io/badge/GitHub%20Actions-Build-181717?logo=github&logoColor=white&style=flat-square)](https://github.com/Numbersf/Action-Build/actions/workflows/Build%20SukiSU%20Ultra%20OnePlus.yml) [![Channel](https://img.shields.io/badge/Follow-Telegram-blue.svg?logo=telegram)](https://t.me/taichi91) [![OnePlus Kernel Manifest](https://img.shields.io/badge/OnePlus%20Kernel%20Manifest-EB0029?logo=oneplus&logoColor=white&style=flat-square)](https://github.com/OnePlusOSS/kernel_manifest) [![Coolapk](https://img.shields.io/badge/Follow-Coolapk-3DDC84?style=flat-square&logo=android&logoColor=white)](http://www.coolapk.com/u/28259173)
+[![Build](https://img.shields.io/badge/GitHub%20Actions-Build-181717?logo=github&logoColor=white&style=flat-square)](https://github.com/Numbersf/Action-Build/actions/workflows/Build%20Kernel%20OnePlus.yml) [![Channel](https://img.shields.io/badge/Follow-Telegram-blue.svg?logo=telegram)](https://t.me/taichi91) [![OnePlus Kernel Manifest](https://img.shields.io/badge/OnePlus%20Kernel%20Manifest-EB0029?logo=oneplus&logoColor=white&style=flat-square)](https://github.com/OnePlusOSS/kernel_manifest) [![Coolapk](https://img.shields.io/badge/Follow-Coolapk-3DDC84?style=flat-square&logo=android&logoColor=white)](http://www.coolapk.com/u/28259173)
  
 <img align="right" src="pic/zakozako~.svg" width="100px" alt="zakozako~">
  
@@ -11,15 +11,15 @@
 禁止宣传**没有任何修改**的`fork`仓库，详见[LICENSE](LICENSE)
 <details>
 <summary><strong>点击查看如何fork项目</strong></summary>
-<img src="https://github.com/Numbersf/Action-Build/blob/SukiSU-Ultra/pic/make.gif" width="500"/>
+<img src="https://github.com/Numbersf/Action-Build/blob/KernelSU/pic/make.gif" width="500"/>
 <summary>请注意，如果你想使用其他分支管理器项目，请在fork时关闭“仅复制SukiSU Ultra分支”</summary>
 </details>
  
 <details>
 <summary><strong>点击查看如何同步fork后的项目到最新</strong></summary>
 <p>
-  <img src="https://github.com/Numbersf/Action-Build/blob/SukiSU-Ultra/pic/syncfork.png" width="150"/>
-  <img src="https://github.com/Numbersf/Action-Build/blob/SukiSU-Ultra/pic/syncfork(2).png" width="150"/>
+  <img src="https://github.com/Numbersf/Action-Build/blob/KernelSU/pic/syncfork.png" width="150"/>
+  <img src="https://github.com/Numbersf/Action-Build/blob/KernelSU/pic/syncfork(2).png" width="150"/>
 </p>
 <summary>请及时同步!某些更新可能会导致旧版失效报错!如果同步后依旧运行失败请删除并重新fork!完成以上步骤后仍有问题再反馈提交issue</summary>
 </details>
@@ -68,7 +68,6 @@
  
 ------
 > [!CAUTION]
->请不要在**保``root``更新**时音量下安装模块请使用音量上跳过!现在也基本上不需要安装了,使用``SukiSU Ultra附加模块``即可  
 >
 >如果你开启了``ZRAM``算法,请在刷入``Anykernel3``重启**前**安装``ZRAM``模块,部分参数请自行调整。另外``5.10``内核暂不支持开启``ZRAM``算法,因为没有找到``zram.ko``路径,但是生成的``Anykernel3``依旧可用  
 >
@@ -76,7 +75,7 @@
 >
 >``OnePlus Ace5``不支持开启风驰,较老的机型即使内核加入也无法使用,不要勉强  
 >
->``CAll Build Start UP``是一个极其危险的新工作流文件,**它没有新功能且一切保持默认不可自定义**,新工作流**禁止**普通用户使用!普通用户请使用``Build OnePlus_SukiSU Ultra All``!  
+>``CAll Build Start UP``是一个极其危险的新工作流文件,**它没有新功能且一切保持默认不可自定义**,新工作流**禁止**普通用户使用!普通用户请使用``Build All OnePlus Kernels``!  
 >
  
 ------
@@ -97,18 +96,6 @@
 - 允许调用第三方动态源码清单仓库,以支持原本不兼容的机型。必须确保源码清单与频道分支的命名符合规范。在第三方清单仓库的`README.md`中,如未定义`CPUD`,可填写任意占位值。此外,极速构建必须保持启用,不可关闭  
  
 - 支持`Baseband-guard(LSMBBG)`  
- 
-- 支持设置分支、自定义版本标识、修改对应分支的提交哈希来进行回退  
-```
-设置分支:原builtin改成其他分支,请按照SukiSU Ultra仓库频道名进行修改,非开发者禁止修改,不可留空、删除
-自定义版本标识:
-将原先的提交hash改成自定义内容,再将提交hash放在最后 这个可以随意改,不要太长
-v3.1.7-f5541e21@builtin
-↓
-v3.1.7-自定义内容@builtin[f5541e21]
-当你不想起用自定义版本标识时,就留空(builtin/)
-无论是否启用自定义版本标识和回退哈希,必须用两个/(U+002F)隔开,不可删除
-```  
  
 - 全自动化获取内核信息及构建信息  
  
@@ -152,9 +139,9 @@ https://github.com/你的用户名(username)/你的仓库名/actions/caches
  
 - 从写入 `Anykernel3.zip` 的配置文件后缀中删除潜在的版本代码,替换成精确的 `Android` 版本号`XX.X.X`
 ```
-AnyKernel3_SukiSUUltra_12896_OnePlusAce2Pro_Android15.0.0_KPM_VFS.zip
-AnyKernel3_SukiSUUltra_12896_OnePlus13_Android15.0.2_KPM_VFS.zip
-AnyKernel3_SukiSUUltra_12896_OnePlus11_Android14.1.0_KPM_VFS.zip
+AnyKernel3_KernelSU_12896_OnePlusAce2Pro_Android15.0.0_KPM_VFS.zip
+AnyKernel3_KernelSU_12896_OnePlus13_Android15.0.2_KPM_VFS.zip
+AnyKernel3_KernelSU_12896_OnePlus11_Android14.1.0_KPM_VFS.zip
 ```  
  
 - 添加 `zram` 模块的 `LZ4K、LZ4KD` 压缩算法支持[@ShirkNeko](https://github.com/ShirkNeko)  
